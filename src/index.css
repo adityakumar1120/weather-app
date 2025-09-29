@@ -1,0 +1,60 @@
+@font-face {
+  font-family: bricolage;
+  src: url('./fonts/BricolageGrotesque_24pt-Bold.ttf');
+}
+@font-face {
+  font-family: dmsans;
+  src: url('./fonts/DMSans-VariableFont_opsz\,wght.ttf');
+}
+@import "tailwindcss";
+
+@theme {
+  --font-bricolage : bricolage , sans-serif;
+  --font-dmsans : dmsans , sans-serif;
+  --breakpoint-xs: 32rem;
+  --breakpoint-lg: 60rem;
+  /* --breakpoint-3xl: 120rem; */
+}
+:root {
+  --color-bg: rgba(2,1,44);
+  --color-text: #fff;
+  --color-neutral-800: #262540; 
+  --color-neutral-700: #302F4A; 
+  --color-neutral-600: #3C3B5E; 
+  --color-blue-500 : #4658D9;
+  --color-blue-700 : #2B1B9C;
+}
+
+.dark {
+  --color-bg: rgba(2, 1, 44,0);
+  --color-text: #ffffff;
+  --color-primary: #6366f1; /* indigo */
+}
+
+.theme-green {
+  --color-bg: #21b760;
+  --color-text: #000000;
+  --color-primary: #10b981; /* green */
+}
+
+.theme-red {
+  --color-primary: #ef4444; /* red */
+}
+
+.theme-purple {
+  --color-primary: #8b5cf6; /* purple */
+}
+
+  .scrollbar::-webkit-scrollbar {
+    background: var(--color-neutral-800);
+    width: 6px;  /* vertical scrollbar width */
+    border-radius: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-700); 
+    border-radius: 9999px; /* rounded */
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--color-neutral-600);
+  }
