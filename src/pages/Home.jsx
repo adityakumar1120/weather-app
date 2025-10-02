@@ -8,7 +8,6 @@ export default function Home() {
     const [theme, setTheme] = useState('dark')
     const allThemes = ['dark' , 'light' , 'theme-green']
     useEffect(()=>{
-         console.log(theme);
         document.documentElement.classList.remove(allThemes[0] ,allThemes[1], allThemes[2])
         if(theme !== 'dark'){
         document.documentElement.classList.add(theme)}

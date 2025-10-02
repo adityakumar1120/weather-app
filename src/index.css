@@ -18,9 +18,10 @@
 :root {
   --color-bg: rgba(2,1,44);
   --color-text: #fff;
-  --color-neutral-800: #262540; 
-  --color-neutral-700: #302F4A; 
+  --color-neutral-300: #ACACB7; 
   --color-neutral-600: #3C3B5E; 
+  --color-neutral-700: #302F4A; 
+  --color-neutral-800: #262540; 
   --color-blue-500 : #4658D9;
   --color-blue-700 : #2B1B9C;
 }
@@ -58,3 +59,5 @@
     border-radius: 8px;
     border: 1px solid var(--color-neutral-600);
   }
+
+ 
