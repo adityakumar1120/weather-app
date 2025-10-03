@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import downArrow from "../assets/down-arrow.svg";
-import sunIcon from "../assets/sun-icon.svg";
 import { useSelector } from "react-redux";
 import { getWeatherIcon } from "../utils/WeatherCodes";
+import { celsiusToFahrenheit } from "../utils/UnitConverter";
 export default function HourlyForecast() {
-  const { hourly, daily } = useSelector((state) => state.weatherData);
-  console.log(hourly, daily);
+  const { hourly, daily  } = useSelector((state) => state.weatherData);
+  const { temperature  } = useSelector((state) => state.unitSystem);
   const [currentDayIdx , setCurrentDayIdx] = useState(0)
   const getDays = (dailyArr) => {
     return dailyArr?.map((elem) => {
@@ -36,7 +36,7 @@ export default function HourlyForecast() {
                 {/* dropdown open */}
                 <div className={` flex-col bg-[var(--color-neutral-800)] p-2 rounded-xl border-1 border-[var(--color-neutral-600)] w-[214px] absolute top-[calc(100%+0px)] right-0  group-hover:flex group-hover:group-hover:flex hidden gap-1`}>
                   {getDays(daily).map((day , i) => (
-                    <button onClick={e => setCurrentDayIdx(i)} className={`cursor-pointer text-left px-[8px] py-[10px] hover:bg-[var(--color-neutral-700)] rounded-[8px] font-medium tracking-wide ${currentDayIdx === i ? 'bg-[var(--color-neutral-700)]' : ''}`}>{day}</button>
+                    <button onClick={e => setCurrentDayIdx(i)} key={i} className={`cursor-pointer text-left px-[8px] py-[10px] hover:bg-[var(--color-neutral-700)] rounded-[8px] font-medium tracking-wide ${currentDayIdx === i ? 'bg-[var(--color-neutral-700)]' : ''}`}>{day}</button>
                   ))}
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default function HourlyForecast() {
                         </span>
                       </div>
                       <span className="text-base">
-                        {hourly.temperature[currentDayIdx][i].toFixed()}&deg;
+                        {temperature.isCelsius ? `${hourly.temperature[currentDayIdx][i].toFixed()}°` : celsiusToFahrenheit(hourly.temperature[currentDayIdx][i].toFixed())}
                       </span>
                     </div>
                   );
@@ -92,7 +92,7 @@ export default function HourlyForecast() {
                         </span>
                       </div>
                       <span className="text-base">
-                        {hourly.temperature[currentDayIdx][i].toFixed()}&deg;
+                      {temperature.isCelsius ? `${hourly.temperature[currentDayIdx][i].toFixed()}°` : celsiusToFahrenheit(hourly.temperature[currentDayIdx][i].toFixed())}
                       </span>
                     </div>
                   );

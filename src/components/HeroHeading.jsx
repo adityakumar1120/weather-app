@@ -4,9 +4,9 @@ import sunIcon from '../assets/sun-icon.svg'
 import { useSelector } from 'react-redux';
 import { getWeatherIcon } from '../utils/WeatherCodes';
 import {getDate, getDay, getMonth, getYear} from '../utils/getDateInfo';
+import { celsiusToFahrenheit } from '../utils/UnitConverter';
 export default function HeroHeading() {
-  const {current} = useSelector((state)=> state.weatherData)
-  console.log(current);
+  const {weatherData : {current} , unitSystem : {temperature}} = useSelector((state)=> state)
  const  getDayMonthYear = (isoTime)=>{
     const day = getDay(isoTime)
     const date = getDate(isoTime)
@@ -27,7 +27,7 @@ export default function HeroHeading() {
         </div>
         <div className='flex items-center justify-between w-full sm:w-fit'>
             <img src={`/weatherIcons/${getWeatherIcon(current.weather_code).icon}.svg`} alt={`${getWeatherIcon(current.weather_code).desc}`}  className='h-30' />
-            <p className='text-6xl xs:text-8xl leading-[-2px]'>{current.temperature.toFixed()}&deg;</p>
+            <p className='text-6xl xs:text-8xl leading-[-2px]'>{temperature.isCelsius ? `${current.temperature.toFixed()}°` : celsiusToFahrenheit(current.temperature.toFixed())}</p>
         </div> 
     </div>
     }

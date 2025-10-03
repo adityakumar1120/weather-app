@@ -44,9 +44,9 @@ export default function DataContainer() {
     const shapeData = (data) => {
       return {
         current: {
-          wind_speed: data.current.wind_speed_10m,
+          wind_speed: data.current.wind_speed_10m.toFixed(),
           humidity: data.current.relative_humidity_2m,
-          feels_like: data.current.apparent_temperature,
+          feels_like: data.current.apparent_temperature.toFixed(),
           precipitation: data.current.precipitation,
           weather_code : data.current.weather_code,
           temperature : data.current.temperature_2m,

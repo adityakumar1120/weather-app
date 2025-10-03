@@ -22,8 +22,10 @@
   --color-neutral-600: #3C3B5E; 
   --color-neutral-700: #302F4A; 
   --color-neutral-800: #262540; 
+  --color-neutral-900: #02012C; 
   --color-blue-500 : #4658D9;
   --color-blue-700 : #2B1B9C;
+  --color-black : #000000
 }
 
 .dark {

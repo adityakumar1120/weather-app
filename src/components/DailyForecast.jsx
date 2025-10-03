@@ -1,9 +1,9 @@
 import React from 'react'
-import sunIcon from '../assets/sun-icon.svg'
 import { useSelector } from 'react-redux'
 import { getWeatherIcon } from '../utils/WeatherCodes'
+import { celsiusToFahrenheit } from '../utils/UnitConverter'
 export default function DailyForecast() {
-    const {daily} = useSelector((state)=> state.weatherData)
+    const {weatherData : {daily} , unitSystem : {temperature}} = useSelector((state)=> state)
   return (
     <div className='mt-8 md:mt-12'>
         <div>
@@ -14,8 +14,8 @@ export default function DailyForecast() {
                     <span className='text-lg'>{day.slice(0,3)}</span>
                     <img src={`/weatherIcons/${getWeatherIcon(weatherCode).icon}.svg`} alt={`${getWeatherIcon(weatherCode).desc}`} className='w-15'/>
                     <div className='flex justify-between w-full'>
-                        <span>{maxTemp.toFixed()}&deg;</span>
-                        <span>{minTemp.toFixed()}&deg;</span>
+                        <span>{temperature.isCelsius ? `${maxTemp.toFixed()}°` : celsiusToFahrenheit(maxTemp.toFixed())}</span>
+                        <span>{temperature.isCelsius ? `${maxTemp.toFixed()}°` : celsiusToFahrenheit(maxTemp.toFixed())}</span>
                     </div>
                 </div>
                 })}
