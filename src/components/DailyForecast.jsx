@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import { getWeatherIcon } from '../utils/WeatherCodes'
 import { celsiusToFahrenheit } from '../utils/UnitConverter'
 export default function DailyForecast() {
-    const {weatherData : {daily} , unitSystem : {temperature}} = useSelector((state)=> state)
+      const {daily } = useSelector((state)=> state.weatherData)
+      const {temperature } = useSelector((state)=> state.unitSystem)
   return (
     <div className='mt-8 md:mt-12'>
         <div>

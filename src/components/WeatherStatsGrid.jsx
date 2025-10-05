@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { celsiusToFahrenheit, kmphToMph, millimeterToInches } from "../utils/UnitConverter";
 
 export default function WeatherStatsGrid() {
-  const { unitSystem, weatherData : {current} } = useSelector((state) => state);
-  const {isSystemMetric,oldSystemMetricVal, temperature, windSpeed, precipitation} = unitSystem 
+    const {current } = useSelector((state)=> state.weatherData)
+  const { temperature, windSpeed, precipitation} = useSelector((state) => state.unitSystem); 
   const showInfo = [
     { infoName: "feels_like", val : temperature?.isCelsius ? `${current?.feels_like}°` : celsiusToFahrenheit(current?.feels_like) },
     { infoName: "humidity", val : `${current?.humidity}%` },

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const weatherDataSlice = createSlice({
+ const weatherDataSlice = createSlice({
     name : 'weatherData',
     initialState : {},
     reducers : {

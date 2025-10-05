@@ -28,12 +28,15 @@ export default function HourlyForecast() {
               <p className="text-[20px] font-[600]">Hourly forecast</p>
               {/* Dropdown */}
               <div className="bg-[var(--color-neutral-800)] pb-2 relative group">
-                <div className="flex items-center gap-2 bg-[var(--color-neutral-600)] py-2 px-4 rounded-[8px] cursor-pointer">
+                <div className="flex items-center gap-2 bg-[var(--color-neutral-700)] py-2 px-4 rounded-[8px] cursor-pointer">
                 <span className="text-[var(--color-text)] text-base ">
                   {getDays(daily)[currentDayIdx]}
                 </span>
-                <img src={downArrow} alt="down-arrow" />
-                {/* dropdown open */}
+                <svg className="svg-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.30859 6.98438L1.10547 1.81641C0.929688 1.67578 0.929688 1.39453 1.10547 1.21875L1.80859 0.550781C1.98438 0.375 2.23047 0.375 2.40625 0.550781L6.625 4.69922L10.8086 0.550781C10.9844 0.375 11.2656 0.375 11.4062 0.550781L12.1094 1.21875C12.2852 1.39453 12.2852 1.67578 12.1094 1.81641L6.90625 6.98438C6.73047 7.16016 6.48438 7.16016 6.30859 6.98438Z" fill="white"/>
+</svg>
+
+                
                 <div className={` flex-col bg-[var(--color-neutral-800)] p-2 rounded-xl border-1 border-[var(--color-neutral-600)] w-[214px] absolute top-[calc(100%+0px)] right-0  group-hover:flex group-hover:group-hover:flex hidden gap-1`}>
                   {getDays(daily).map((day , i) => (
                     <button onClick={e => setCurrentDayIdx(i)} key={i} className={`cursor-pointer text-left px-[8px] py-[10px] hover:bg-[var(--color-neutral-700)] rounded-[8px] font-medium tracking-wide ${currentDayIdx === i ? 'bg-[var(--color-neutral-700)]' : ''}`}>{day}</button>
@@ -45,33 +48,7 @@ export default function HourlyForecast() {
             <div className="flex flex-col gap-4 px-6">
               {hourly &&
                 hourly.time[currentDayIdx].map((time, i) => {
-                  const FormatTime = time.split('T')[1].split(':')[0]
-                  if(currentDayIdx === 0 && FormatTime >= new Date().getHours()){
-                     return (
-                    <div
-                      key={i}
-                      className="flex justify-between items-center bg-[var(--color-neutral-700)] rounded-[8px] p-2 border-1 border-[var(--color-neutral-600)]"
-                    >
-                      <div className="flex justify-between items-center">
-                        <img
-                          src={`/weatherIcons/${
-                            getWeatherIcon(hourly.weatherCode[currentDayIdx][i]).icon
-                          }.svg`}
-                          alt={`${
-                            getWeatherIcon(hourly.weatherCode[currentDayIdx][i]).desc
-                          }`}
-                          className="w-10"
-                        />
-                        <span className="text-lg font-[500]">
-                          {formatTime12Hour(time)}
-                        </span>
-                      </div>
-                      <span className="text-base">
-                        {temperature.isCelsius ? `${hourly.temperature[currentDayIdx][i].toFixed()}°` : celsiusToFahrenheit(hourly.temperature[currentDayIdx][i].toFixed())}
-                      </span>
-                    </div>
-                  );
-                  } else if(currentDayIdx > 0){
+                  
                     return (
                     <div
                       key={i}
@@ -96,7 +73,7 @@ export default function HourlyForecast() {
                       </span>
                     </div>
                   );
-                  }else{return}
+                  
                 })}
             </div>
           </div>

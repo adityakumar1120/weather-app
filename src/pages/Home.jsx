@@ -14,7 +14,7 @@ export default function Home() {
     }, [theme])
 
   return (
-    <div className='bg-[var(--color-bg)] text-[var(--color-text)] font-dmsans'>
+    <div className='bg-[var(--color-bg)] text-[var(--color-text)] font-dmsans min-h-screen'>
         <div className='mx-auto max-w-[1350px] px-4 xs:px-6 pb-14'>
             <Navbar/>
             <Heading/>
