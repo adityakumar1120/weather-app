@@ -70,7 +70,7 @@ This is a solution to the [Weather app challenge on Frontend Mentor](https://www
 - How to implement geolocation in a web app
 - How to implement dark and light mode themes
 - How to use an API to get updated weather data
-
+- implemented debounce functionality to optimize search input handling
 ### Continued development
 
 Any feedback is welcome!
