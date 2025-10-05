@@ -1,38 +1,83 @@
-# React + Vite
+# Frontend Mentor - Weather app solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Weather app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [Features](#features)
+  - [Planned Features](#planned-features)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Features
 
-## Expanding the ESLint configuration
+- [x] Search for weather information by entering a location in the search bar
+- [x] View current weather conditions including temperature, weather icon, and location details
+- [x] See additional weather metrics like "feels like" temperature, humidity percentage, wind speed, and precipitation amounts
+- [x] Browse a 7-day weather forecast with daily high/low temperatures and weather icons
+- [x] View an hourly forecast showing temperature changes throughout the day
+- [x] Switch between different days of the week using the day selector in the hourly forecast section
+- [x] Toggle between Imperial and Metric measurement units via the units dropdown
+- [x] Switch between specific temperature units (Celsius and Fahrenheit) and measurement units for wind speed (km/h and mph) and precipitation (millimeters) via the units dropdown
+- [x] View the optimal layout for the interface depending on their device's screen size
+- [x] See hover and focus states for all interactive elements on the page
+- [x] Geolocation
+- [x] Dark/light mode themes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Planned Features
 
-- Search for weather information by entering a location in the search bar
-- View current weather conditions, including temperature, weather icon, and location details
-- See additional weather metrics like "feels like" temperature, humidity percentage, wind speed, and precipitation amounts ✅
-- Browse a 7-day weather forecast with daily high/low temperatures and weather icons ✅
-- View an hourly forecast showing temperature changes throughout the day ✅
-- Switch between different days of the week using the day selector in the hourly forecast section ✅
-- Toggle between Imperial and Metric measurement units via the units dropdown ✅
-- Switch between specific temperature units (Celsius and Fahrenheit) and measurement units for wind speed (km/h and mph) and precipitation (millimeters) via the units dropdown ✅
-- View the optimal layout for the interface depending on their device's screen size ✅
-- See hover and focus states for all interactive elements on the page ✅
+- [ ] Location comparison
+- [ ] Animated weather backgrounds
+- [ ] Voice search
+- [ ] Progressive web app (PWA) functionality
 
-### Extra Features
-1. Add geolocation detection to automatically show weather for the user's current location on first visit
-2. Implement a favorites/saved locations system where users can bookmark frequently checked locations
-3. Implement a "Compare Locations" feature to view weather side-by-side for multiple locations
-4. Include UV index, visibility, and air pressure data (available via Open-Meteo)
-5. Add sunrise/sunset times with visual indicators
-6. Add animated weather backgrounds that change based on current conditions
-7. Implement voice search functionality
-8. Create dark/light mode themes that adapt to the time of day
-9. Add progressive web app (PWA) capabilities for mobile installation
+### Screenshot
+
+![](./screenshot.png)
+
+### Links
+
+- Solution URL: [https://github.com/adityakumar1120/weather-app](https://github.com/adityakumar1120/weather-app)
+- Live Site URL: [https://aditya-weather-forecast-app.netlify.app/)](https://aditya-weather-forecast-app.netlify.app/)
+
+## My process
+
+### Built with
+
+- React JS
+- Tailwind CSS
+- Mobile-first workflow
+- Redux Toolkit
+- Axios
+- React Router
+- Vite
+- Open-Meteo API
+
+### What I learned
+- How to use CSS variables for theming using Tailwind CSS in a React project
+- How to manage state using Redux Toolkit
+- How to handle asynchronous API calls with Axios
+- How to implement responsive design using Tailwind CSS
+- How to make search functionality in React with suggestions
+- How to implement geolocation in a web app
+- How to implement dark and light mode themes
+- How to use an API to get updated weather data
+
+### Continued development
+
+Any feedback is welcome!
+
+Learn how to make clean background animations
+
+## Author
+
+- GitHub - [Aditya kumar](https://github.com/adityakumar1120/)
+- Frontend Mentor - [@adityakumar1120](https://www.frontendmentor.io/profile/adityakumar1120)
