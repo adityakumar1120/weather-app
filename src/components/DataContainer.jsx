@@ -69,7 +69,7 @@ export default function DataContainer() {
         <DailyForecast />
       </div>
       <HourlyForecast />
-    </div> : ''
+    </div> : <Shimmer/>
   }
   </>
   
