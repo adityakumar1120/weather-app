@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { changeOneUnit, changeSystem } from "../store/unitSystemSlice";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownBtn from "./DropdownBtn";
+import useClickOutside from "../hooks/useClickOutside";
 export default function Navbar() {
   const {
     isSystemMetric,
@@ -20,6 +21,7 @@ export default function Navbar() {
       })
     );
   };
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const [theme, setTheme] = useState(()=>{
     let val = localStorage.getItem('theme')
     if(val) return val
@@ -33,13 +35,12 @@ export default function Navbar() {
       setTheme("dark");
     }
   };
+    useClickOutside('.nav-dropdown-wrapper' , () => setIsDropDownOpen(false))
+
   useEffect(()=>{
-    console.log(theme);
      if (theme === "dark") {
     document.body.classList.remove("light");
-    console.log(theme);
   } else if (theme === "light") {
-    console.log(theme);
     document.body.classList.add("light");
   }
     localStorage.setItem('theme' , theme)
@@ -76,9 +77,11 @@ export default function Navbar() {
             <path d="M600-640 480-760l120-120 120 120-120 120Zm200 120-80-80 80-80 80 80-80 80ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 99 11 193.5T520-521q71 71 165.5 100T879-410q-26 144-138 237T483-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T463-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T159-484q0 135 94.5 229.5T483-160Zm-20-305Z" />
           </svg>
         </div>}
-        <div className="bg-[var(--color-bg)] rounded pb-2 relative group">
-          <div className="flex items-center cursor-pointer gap-2 bg-[var(--color-neutral-800)] text-sm xs:text-base p-2 px-3 xs:py-2 xs:px-4 rounded ">
-            <svg
+        {/* dropDown */}
+        <div onMouseLeave={e => setIsDropDownOpen(false)} onMouseEnter={e => setIsDropDownOpen(true)} className="bg-[var(--color-bg)] rounded pb-2 relative group">
+          <div  className="nav-dropdown-wrapper">
+           <div  onClick={e => setIsDropDownOpen(prev => !prev)} className="flex items-center cursor-pointer gap-2 bg-[var(--color-neutral-800)] text-sm xs:text-base p-2 px-3 xs:py-2 xs:px-4 rounded">
+             <svg
               className="svg-icon"
               width="16"
               height="17"
@@ -92,7 +95,7 @@ export default function Navbar() {
               />
             </svg>
 
-            <span className="text-[var(--color-text)] text-base ">Units</span>
+            <span className="select-none text-[var(--color-text)] text-base ">Units</span>
 
             <svg
               className="svg-icon"
@@ -108,9 +111,11 @@ export default function Navbar() {
               />
             </svg>
 
+           </div>
             {/* dropdown open */}
-            <div
-              className={`flex-col bg-[var(--color-neutral-800)] p-2 rounded-xl border-1 border-[var(--color-neutral-600)] w-[214px] absolute top-[calc(100%+0px)] right-0  group-hover:flex group-hover:group-hover:flex hidden gap-1 z-1`}
+            {
+              isDropDownOpen && <div
+              className={`flex flex-col bg-[var(--color-neutral-800)] p-2 rounded-xl border-1 border-[var(--color-neutral-600)] w-[214px] absolute top-[calc(100%+0px)] right-0 gap-1 z-1`}
             >
               <button
                 onClick={() => dispatch(changeSystem())}
@@ -175,6 +180,7 @@ export default function Navbar() {
                 unitName={"Inches (in)"}
               />
             </div>
+            }
           </div>
         </div>
       </div>

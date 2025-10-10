@@ -9,10 +9,12 @@ import axios from "axios";
         const data = response.data;
         if (data.results) {
           setLocation(data.results);
+          return data.results
           
         } else {
           setLocation('');
-          throw new Error('not found');
+          throw new Error([]);
+          
         }
     } else {
         setLocation("");
