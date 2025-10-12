@@ -26,7 +26,7 @@ export default function HourlyForecast() {
     <>
       {hourly && (
         <div className="overflow-hidden xl:w-[34.5%] rounded-xl">
-          <div className="bg-[var(--color-neutral-800)] rounded-xl  pb-6 max-h-[616px] overflow-y-auto scrollbar">
+          <div className="bg-[var(--color-neutral-800)] rounded-xl  pb-6 max-h-[780px] overflow-y-auto scrollbar">
             <div className="flex justify-between items-center pb-4 sticky px-6 pt-6 top-0 bg-[var(--color-neutral-800)]">
               <p className="text-[20px] font-[600]">Hourly forecast</p>
               {/* Dropdown */}

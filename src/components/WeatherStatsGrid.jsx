@@ -1,15 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { celsiusToFahrenheit, kmphToMph, millimeterToInches } from "../utils/UnitConverter";
+import { celsiusToFahrenheit, kmphToMph, meterToKm, millimeterToInches } from "../utils/UnitConverter";
 
 export default function WeatherStatsGrid() {
     const {current } = useSelector((state)=> state.weatherData)
-  const { temperature, windSpeed, precipitation} = useSelector((state) => state.unitSystem); 
+  const { temperature, windSpeed, precipitation , visibility} = useSelector((state) => state.unitSystem); 
   const showInfo = [
     { infoName: "feels_like", val : temperature?.isCelsius ? `${current?.feels_like}°` : celsiusToFahrenheit(current?.feels_like) },
     { infoName: "humidity", val : `${current?.humidity}%` },
     { infoName: "wind_speed", val : windSpeed?.isKmph ? `${current?.wind_speed} km/h` : kmphToMph(current?.wind_speed) },
     { infoName: "precipitation", val : precipitation.isMillimeters ? `${current?.precipitation.toFixed()} mm` : millimeterToInches(current?.precipitation) },
+    { infoName: "uV_index", val :  current?.uv_index},
+  { infoName: "visibility", val : visibility.isMeter ? `${current?.visibility} m` : meterToKm(current?.visibility) },
+    { infoName: "surface_pressure", val : `${current?.surface_pressure} hPa` },
   ];
   const formatText = (word) => {
     return word

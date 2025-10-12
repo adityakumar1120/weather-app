@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getWeatherUsingCoordinates } from "../utils/getWeatherUsingCoordinates";
 import { useDispatch } from "react-redux";
 import { setError } from "../store/FetchingStates";
 import { searchLocation } from "../utils/searchLocation";
 import useClickOutside from "../hooks/useClickOutside";
 import { Mic, MicOff } from "lucide-react";
 import { useSearchParams } from "react-router";
-export default function SearchBox() {
+import axios from "axios";
+export default function SearchInputCompare({setLocationInfo}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -14,23 +14,40 @@ export default function SearchBox() {
   const [speechLocation, setSpeechLocation] = useState("");
   const dispatch = useDispatch();
   const [searchParams , setSearchparams] = useSearchParams()
+  async function getWeatherUsingCoordinates(latitude , longitude , {city , state}) {
+    console.log(city,state);
+  try {
+    // dispatch(setLoading(true))
+    // dispatch(setError(false))
+        const endpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,visibility,uv_index,surface_pressure&hourly=temperature_2m,weather_code,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,sunrise,sunset&timezone=auto&forecast_days=7`;
+        const response = await axios.get(endpoint);
+        const data = await response.data;
+        console.log(data);
+        setLocationInfo({...data , state , city})
+        // dispatch(setData(shapeData(data ,city , state)));
+        // dispatch(setLoading(false))
+      } catch (error) {
+        // dispatch(setLoading(false))
+        console.log(error);
+        // dispatch(setError({isError : true , message : 'something went wrong'}))
+      }
+    }
   const handleClick = (idx, searchQuery) => {
   setSearchparams({})
     if (idx !== undefined && location) {
       getWeatherUsingCoordinates(
         location[idx].latitude,
         location[idx].longitude,
-        dispatch,
         { city: location[idx]?.name, state: location[idx]?.admin1 }
       );
       setSearchQuery("");
       return;
     }
     if (searchQuery.trim() && location) {
+        console.log({ city: location[0]?.name, state: location[0]?.admin1 });
       getWeatherUsingCoordinates(
         location[0].latitude,
         location[0].longitude,
-        dispatch,
         { city: location[0]?.name, state: location[0]?.admin1 }
       );
       setSearchQuery("");
@@ -74,7 +91,6 @@ export default function SearchBox() {
       getWeatherUsingCoordinates(
         latsAnsLongs[0].latitude,
         latsAnsLongs[0].longitude,
-        dispatch,
         { city: latsAnsLongs[0]?.name, state: latsAnsLongs[0]?.admin1 }
       );
   setSearchparams({})
@@ -182,7 +198,7 @@ export default function SearchBox() {
           {/* location dropDown */}
           {isOpen && location && (
             <div
-              className={`auto-suggestion gap-0.5 flex-col absolute top-full bg-[var(--color-neutral-800)] w-full left-0 mt-2 rounded-xl p-2 z-20`}
+              className={`auto-suggestion gap-0.5 flex-col absolute top-full bg-[var(--color-neutral-800)] w-full left-0 mt-2 rounded-xl p-2 z-90 text-[var(--color-text)]`}
             >
               {location.map((place, i) => (
                 <p

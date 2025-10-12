@@ -7,3 +7,6 @@ export const kmphToMph = (kmph)=>{
 export const millimeterToInches = (mm)=>{
     return `${(mm*0.0393701).toFixed()} in`
 }
+export const meterToKm = (mm)=>{
+    return `${(mm/1000).toFixed()} Km`
+}

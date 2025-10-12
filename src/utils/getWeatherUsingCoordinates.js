@@ -22,10 +22,13 @@ const chunkArr = (arr, size) => {
         weatherCode: chunkArr(weather_code, 24),
       };
     };
-const shapeData = (data,city , state) => {
+const shapeData = (data,city , state ) => {
     return {
       city,
       state,
+      latitude : data.latitude,
+      longitude : data.longitude,
+      id: `${data.latitude.toString().split('.').join('')}${data.longitude.toString().split('.').join('')}`,
         current: {
             wind_speed: data.current.wind_speed_10m.toFixed(),
             humidity: data.current.relative_humidity_2m,
@@ -33,7 +36,10 @@ const shapeData = (data,city , state) => {
             precipitation: data.current.precipitation,
             weather_code : data.current.weather_code,
             temperature : data.current.temperature_2m,
-            time : data.current.time
+            time : data.current.time,
+            visibility : data.current.visibility.toFixed(),
+            uv_index : data.current.uv_index,
+            surface_pressure : data.current.surface_pressure.toFixed(),
         },
         daily: days.map((day, i) => {
             return {
@@ -57,6 +63,7 @@ export async function getWeatherUsingCoordinates(latitude , longitude , dispatch
         dispatch(setLoading(false))
       } catch (error) {
         dispatch(setLoading(false))
+        console.log(error);
         dispatch(setError({isError : true , message : 'something went wrong'}))
       }
     }

@@ -17,7 +17,10 @@ const unitSystemSlice = createSlice({
         precipitation: {
             isMillimeters: true,
             isInches: false,
-
+        },
+        visibility :{
+            isMeter : true,
+            isKilometer : false
         }
     },
     reducers: {
@@ -28,10 +31,12 @@ const unitSystemSlice = createSlice({
                 newState.temperature = { isCelsius: true, isFahrenheit: false };
                 newState.windSpeed = { isKmph: true, isMph: false };
                 newState.precipitation = { isMillimeters: true, isInches: false };
+                newState.visibility = { isMeter: true, isKilometer: false };
             } else {
                 newState.temperature = { isCelsius: false, isFahrenheit: true };
                 newState.windSpeed = { isKmph: false, isMph: true };
                 newState.precipitation = { isMillimeters: false, isInches: true };
+                newState.visibility = { isMeter: false, isKilometer: true };
             }
 
             return newState;
